@@ -1,0 +1,8 @@
+{
+    "builds": [
+      { "src": "Sonic_Boom/**/*.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/Sonic_Boom/settings.py" }
+    ]
+  }
