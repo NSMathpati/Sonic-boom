@@ -1,0 +1,65 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+{% block content %}
+<div class="container">
+    <h1>Welcome, {{ name }}!</h1>
+    
+    <h2>Your Files</h2>
+    <div class="row">
+        {% for file in user_files %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ file.name }}</h5>
+                    <p class="card-text">{{ file.description }}</p>
+                    <p class="card-text">Uploaded by: {{ file.uploader.email }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Public Files</h2>
+    <div class="row">
+        {% for file in public_files %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ file.name }}</h5>
+                    <p class="card-text">{{ file.description }}</p>
+                    <p class="card-text">Uploaded by: {{ file.uploader.email }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Protected Files</h2>
+    <div class="row">
+        {% for file in protected_files %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ file.name }}</h5>
+                    <p class="card-text">{{ file.description }}</p>
+                    <p class="card-text">Uploaded by: {{ file.uploader.email }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Upload File</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
