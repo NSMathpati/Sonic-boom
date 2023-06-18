@@ -89,7 +89,7 @@ class IndexView(LoginRequiredMixin, View):
                 user = Login.objects.get(email=email_id)
                 print(user)
                 user_files = File.objects.filter(uploader=user)
-                protected_files = File.objects.filter(access_type='protected').exclude(uploader=user)
+                protected_files = File.objects.filter(access_type='protected', allowed_emails__contains=user.email)
                 public_files = File.objects.filter(access_type='public').exclude(uploader=user)
                 print("User:", user)
                 print("User Files:", user_files)

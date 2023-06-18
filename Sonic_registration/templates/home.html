@@ -44,24 +44,33 @@
         {% endfor %}
     </div>
 
+    <!-- Your existing code -->
+
     <h2>Protected Files</h2>
     <div class="row">
         {% for file in protected_files %}
-        <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ file.name }}</h5>
-                    <p class="card-text">{{ file.description }}</p>
-                    <p class="card-text">Uploaded by: {{ file.uploader.email }}</p>
-                    <audio controls>
-                        <source src="{{ file.file.url }}" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
+            {% if user.email in file.get_allowed_emails %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ file.name }}</h5>
+                            <p class="card-text">{{ file.description }}</p>
+                            <p class="card-text">Uploaded by: {{ file.uploader.email }}</p>
+                            <audio controls>
+                                <source src="{{ file.file.url }}" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            {% endif %}
         {% endfor %}
     </div>
+
+<!-- Your existing code -->
+
+        
+    
 
     <h2>Upload File</h2>
     <form method="post" enctype="multipart/form-data">
@@ -70,6 +79,8 @@
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
 </div>
+
+<a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
 {% endblock %}
 
 

@@ -37,6 +37,10 @@ class File(models.Model):
     file = models.FileField(upload_to='files/', validators=[FileExtensionValidator(['mp3'])])
     uploader = models.ForeignKey(Login, on_delete=models.CASCADE)
     access_type = models.CharField(choices=ACCESS_CHOICES, default='private', max_length=10)
+    allowed_emails = models.TextField(blank = True)
+
+    def get_allowed_emails(self):
+        return self.allowed_emails.split(',') if self.allowed_emails else []
 
     def __str__(self):
         return self.name
