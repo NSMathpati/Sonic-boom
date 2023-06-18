@@ -15,8 +15,8 @@ This is a web application built with Django that allows users to share and liste
 
 ## Sample OutPut Images
 
-![User 1 output](/static_files/Images/"Screenshot (51)")
-![User 2 output](/static_files/Images/"Screenshot (53)")
+![User 1 output](/static_files/Images/image1)
+![User 2 output](/static_files/Images/image3)
 
 ```
 
